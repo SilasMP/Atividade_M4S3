@@ -8,15 +8,15 @@ def raspagemOlx():
     resposta = sessao.get(url)
 
     anuncios = []
-    links = resposta.html.find('#ad-list li a')
+    links = resposta.html.find('a[class="sc-dJjYzT dOvWTZ"]')
     time.sleep(1)
     for link in links:
         
-        url_iphone = link.attrs['href']
+        url_iphone = link.attrs['href']        
         resposta_iphone = sessao.get(url_iphone)
         titulo = resposta_iphone.html.find('h1', first=True).text
-        preco = resposta_iphone.html.find('[data-testid="ad-price-wrapper"] span', first=True).text
-        publicacao = resposta_iphone.html.find('div.cTzggy span', first=True).text
+        preco = resposta_iphone.html.find('span[class="ad__sc-1wimjbb-1 hoHpcC sc-bZQynM hYqmow"]', first=True).text
+        publicacao = resposta_iphone.html.find('span[class="ad__sc-1oq8jzc-0 dWayMW sc-bZQynM FSvbY"]', first=True).text
         
         if preco != 0 and preco !='':
             anuncios.append({
